@@ -5,7 +5,7 @@ Summary(pt_BR):	Gerador de relatórios por usuário/ip/nome do squid
 Name:		sarg
 Version:	1.2.1
 Release:	1
-License:	GPLv2
+License:	GPL v2
 Group:		Networking
 Source0:	http://web.onda.com.br/orso/%{name}-%{version}.tar.gz
 Source1:	%{name}.conf
