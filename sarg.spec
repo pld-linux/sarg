@@ -5,17 +5,17 @@ Summary(pt_BR):	Gerador de relatórios por usuário/ip/nome do squid
 Name:		sarg
 Version:	1.2.1
 Release:	1
-License:	GPL
-Group:		Networking/Utilities
+License:	GPLv2
+Group:		Networking
 Source0:	http://web.onda.com.br/orso/%{name}-%{version}.tar.gz
 URL:		http://web.onda.com.br/orso/
+BuildRequires:	autoconf
+BuildRequires:	automake
+Requires:	squid
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	sqmgrlog
-Requires:	squid
-Requires:	bash
-Requires:	sh-utils
 
-%define		contentdir      /home/httpd/html/squid-reports
+%define		contentdir	/home/httpd/html/squid-reports
 
 %description
 Sarg - Squid Analysis Report Generator is a tool that allow you to
@@ -42,7 +42,10 @@ HTML ou por email.
 %setup -q
 
 %build
-%configure2_13 \
+aclocal
+autoconf
+cp %{_datadir}/automake/config.* .
+%configure \
 	 --enable-sysconfdir=%{_sysconfdir}/%{name}
 
 %{__make}
@@ -56,14 +59,10 @@ install -d $RPM_BUILD_ROOT{%{_bindir},%{_sysconfdir}/%{name},%{contentdir}}
 	SYSCONFDIR=$RPM_BUILD_ROOT%{_sysconfdir}/%{name}
 
 install  sarg.conf $RPM_BUILD_ROOT%{_sysconfdir}/%{name}/sarg.conf
-cp -rf languages $RPM_BUILD_ROOT%{_sysconfdir}/%{name}
+
+cp -rf languages $RPM_BUILD_ROOT/%{_sysconfdir}/%{name}
 
 gzip -9nf README CONTRIBUTORS ChangeLog
-
-%post
-alias sarg='sarg -l /var/log/squid/access.log'
-echo "language Polish" >> /etc/sarg/sarg.conf
-echo "charset Latin2" >> /etc/sarg/sarg.conf
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -71,9 +70,9 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/sarg
+%doc *.gz
+%dir %{contentdir}
 %dir %{_sysconfdir}/%{name}
 %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/%{name}/sarg.conf
 %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/%{name}/exclude_codes
 %{_sysconfdir}/%{name}/languages
-%dir %{contentdir}
-%doc *.gz
