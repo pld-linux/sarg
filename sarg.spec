@@ -8,6 +8,7 @@ Release:	1
 License:	GPL v2
 Group:		Networking
 Source0:	http://web.onda.com.br/orso/%{name}-%{version}.tar.gz
+# Source0-md5:	f8b78d13d96793eb1c9a024bf9d816a5
 Source1:	%{name}.conf
 Patch0:		%{name}-iso2.patch
 URL:		http://web.onda.com.br/orso/
