@@ -3,22 +3,20 @@ Summary(es):	generador de informes del squid por utilizador/ip/nombre
 Summary(pl):	Analizator logów Squida
 Summary(pt_BR):	Gerador de relatórios por usuário/ip/nome do squid
 Name:		sarg
-Version:	1.4.1
+Version:	2.0.1
 Release:	0.1
 License:	GPL v2
 Group:		Networking
-Source0:	http://web.onda.com.br/orso/%{name}-%{version}.tar.gz
-# Source0-md5:	357f8e175746e19dac4a61f4a2ef0aaf
-Source1:	%{name}.conf
-Patch0:		%{name}-iso2.patch
-URL:		http://web.onda.com.br/orso/
+Source0:	http://dl.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
+# Source0-md5:	a2f025eb47c2569dc1e39f383c989c78
+URL:		http://sarg.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
 Requires:	squid
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	sqmgrlog
 
-%define		contentdir	/home/services/httpd/html/squid-reports
+%define		contentdir	/var/lib/sarg
 
 %description
 Sarg - Squid Analysis Report Generator is a tool that allow you to
@@ -43,7 +41,6 @@ HTML ou por email.
 
 %prep
 %setup -q
-#%patch0 -p1
 
 %build
 %{__aclocal}
@@ -63,9 +60,7 @@ install -d $RPM_BUILD_ROOT{%{_bindir},%{_sysconfdir}/%{name},%{contentdir},%{_ma
 	SYSCONFDIR=$RPM_BUILD_ROOT%{_sysconfdir}/%{name} \
 	MANDIR=$RPM_BUILD_ROOT%{_mandir}/man1/
 
-install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/%{name}
-
-#install sarg.conf $RPM_BUILD_ROOT%{_sysconfdir}/%{name}/sarg.conf
+install sarg.conf $RPM_BUILD_ROOT%{_sysconfdir}/%{name}/sarg.conf
 
 cp -rf languages $RPM_BUILD_ROOT%{_sysconfdir}/%{name}
 
