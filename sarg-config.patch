@@ -1,6 +1,6 @@
 diff -dur sarg-2.0.1.orig/sarg.1 sarg-2.0.1/sarg.1
 --- sarg-2.0.1.orig/sarg.1	2004-10-03 23:37:03.000000000 +0200
-+++ sarg-2.0.1/sarg.1	2004-11-02 15:09:38.889512573 +0100
++++ sarg-2.0.1/sarg.1	2004-11-04 10:07:46.453506303 +0100
 @@ -131,11 +131,11 @@
  .B \-split
  Split the log file by date in \fB-d\fP parameter.
@@ -18,17 +18,25 @@ diff -dur sarg-2.0.1.orig/sarg.1 sarg-2.0.1/sarg.1
  .SH AUTHOR
 diff -dur sarg-2.0.1.orig/sarg.conf sarg-2.0.1/sarg.conf
 --- sarg-2.0.1.orig/sarg.conf	2004-10-03 23:37:03.000000000 +0200
-+++ sarg-2.0.1/sarg.conf	2004-11-02 15:11:25.379179337 +0100
-@@ -29,7 +29,7 @@
++++ sarg-2.0.1/sarg.conf	2004-11-04 10:09:24.966485822 +0100
+@@ -29,7 +29,8 @@
  #       Where is the access.log file
  #       sarg -l file
  #
 -#access_log /usr/local/squid/var/logs/access.log
-+access_log /var/log/squid/access.log
++# Default PLD configuration: make report from the recently rotated log
++access_log /var/log/archiv/squid/access.log.1.gz
  
  # TAG: graphs yes|no
  #	Use graphics where is possible.
-@@ -136,7 +136,7 @@
+@@ -130,13 +131,13 @@
+ #       Temporary directory name for work files
+ #       sarg -w dir
+ #
+-#temporary_dir /tmp
++temporary_dir /var/lib/sarg/tmp
+ 
+ # TAG:  output_dir
  #       The reports will be saved in that directory
  #       sarg -o dir
  #
@@ -37,7 +45,7 @@ diff -dur sarg-2.0.1.orig/sarg.conf sarg-2.0.1/sarg.conf
  
  # TAG:  output_email
  #       Email address to send the reports. If you use this tag, no html reports will be generated.
-@@ -260,7 +260,7 @@
+@@ -260,7 +261,7 @@
  # TAG: exclude_codes file
  #      Ignore records with these codes. Eg.: NONE/400
  #
@@ -46,7 +54,7 @@ diff -dur sarg-2.0.1.orig/sarg.conf sarg-2.0.1/sarg.conf
  
  # TAG: replace_index string
  #      Replace "index.html" in the main index file with this string
-@@ -427,7 +427,7 @@
+@@ -427,7 +428,7 @@
  #      path to squidGuard.conf file
  #      Generate reports from SquidGuard logs.
  #      Use 'none' to disable.
@@ -55,7 +63,7 @@ diff -dur sarg-2.0.1.orig/sarg.conf sarg-2.0.1/sarg.conf
  #
  #squidguard_conf none
  
-@@ -481,7 +481,7 @@
+@@ -481,7 +482,7 @@
  #     Sarg will create sarg-php directory with some PHP modules:
  #     - sarg-squidguard-block.php - add urls from user reports to squidGuard DB
  #
@@ -64,7 +72,7 @@ diff -dur sarg-2.0.1.orig/sarg.conf sarg-2.0.1/sarg.conf
  
  # TAG block_it module_url
  #     This tag allow you to pass urls from user reports to a cgi or php module,
-@@ -524,7 +524,7 @@
+@@ -524,7 +525,7 @@
  #                                          %u - user report
  #
  # user_authentication no
