@@ -44,7 +44,7 @@ HTML ou por email.
 
 %build
 aclocal
-autoconf
+%{__autoconf}
 cp %{_datadir}/automake/config.* .
 %configure \
 	 --enable-sysconfdir=%{_sysconfdir}/%{name}
