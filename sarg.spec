@@ -1,3 +1,6 @@
+#
+# TODO:
+#  - change temporary_dir in the default configuration
 Summary:	Squid log analyzer
 Summary(es):	generador de informes del squid por utilizador/ip/nombre
 Summary(pl):	Analizator logów Squida
@@ -10,6 +13,8 @@ Group:		Networking
 Source0:	http://dl.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
 # Source0-md5:	a2f025eb47c2569dc1e39f383c989c78
 Patch0:		%{name}-font.patch
+Patch1:		%{name}-config.patch
+Patch2:		%{name}-paths.patch
 URL:		http://sarg.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -42,6 +47,8 @@ HTML ou por email.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
+%patch2 -p1
 
 %build
 %{__aclocal}
@@ -55,7 +62,7 @@ cp -f %{_datadir}/automake/config.* cfgaux
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_bindir},%{_sysconfdir}/%{name}}
-install -d $RPM_BUILD_ROOT{/var/lib/%{name},%{_datadir}/%{name},%{_mandir}/man1}
+install -d $RPM_BUILD_ROOT{/var/lib/%{name}/images,%{_datadir}/%{name},%{_mandir}/man1}
 
 %{__make} install \
 	BINDIR=$RPM_BUILD_ROOT%{_bindir} \
@@ -64,8 +71,9 @@ install -d $RPM_BUILD_ROOT{/var/lib/%{name},%{_datadir}/%{name},%{_mandir}/man1}
 
 install sarg.conf $RPM_BUILD_ROOT%{_sysconfdir}/%{name}/sarg.conf
 mv $RPM_BUILD_ROOT{%{_sysconfdir}/%{name}/images,%{_datadir}/%{name}}
-
-#cp -rf languages $RPM_BUILD_ROOT%{_sysconfdir}/%{name}
+mv $RPM_BUILD_ROOT{%{_sysconfdir}/%{name}/languages,%{_datadir}/%{name}}
+rm -r $RPM_BUILD_ROOT{/etc/sarg/sarg-php,/etc/sarg/fonts}
+rm $RPM_BUILD_ROOT/etc/sarg/css.tpl
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -74,10 +82,10 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/sarg
 %doc ChangeLog README CONTRIBUTORS DONATIONS BETA-TESTERS sarg-php
-%attr(751,root,stats) %dir /var/lib/%{name}
+%attr(771,root,stats) %dir /var/lib/%{name}
+%attr(771,root,stats) %dir /var/lib/%{name}/images
 %dir %{_sysconfdir}/%{name}
 %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/%{name}/sarg.conf
 %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/%{name}/exclude_codes
-%{_sysconfdir}/%{name}/languages
-%{_datadir}/%{name}/languages
+%{_datadir}/%{name}
 %{_mandir}/man?/*
