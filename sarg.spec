@@ -9,14 +9,14 @@ License:	GPL v2
 Group:		Networking
 Source0:	http://dl.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
 # Source0-md5:	a2f025eb47c2569dc1e39f383c989c78
+Patch0:		%{name}-font.patch
 URL:		http://sarg.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
+Requires:	X11-fonts
 Requires:	squid
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	sqmgrlog
-
-%define		contentdir	/var/lib/sarg
 
 %description
 Sarg - Squid Analysis Report Generator is a tool that allow you to
@@ -41,6 +41,7 @@ HTML ou por email.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 %{__aclocal}
@@ -53,7 +54,8 @@ cp -f %{_datadir}/automake/config.* cfgaux
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_bindir},%{_sysconfdir}/%{name},%{contentdir},%{_mandir}/man1}
+install -d $RPM_BUILD_ROOT{%{_bindir},%{_sysconfdir}/%{name}}
+install -d $RPM_BUILD_ROOT{/var/lib/%{name},%{_datadir}/%{name},%{_mandir}/man1}
 
 %{__make} install \
 	BINDIR=$RPM_BUILD_ROOT%{_bindir} \
@@ -61,8 +63,9 @@ install -d $RPM_BUILD_ROOT{%{_bindir},%{_sysconfdir}/%{name},%{contentdir},%{_ma
 	MANDIR=$RPM_BUILD_ROOT%{_mandir}/man1/
 
 install sarg.conf $RPM_BUILD_ROOT%{_sysconfdir}/%{name}/sarg.conf
+mv $RPM_BUILD_ROOT{%{_sysconfdir}/%{name}/images,%{_datadir}/%{name}}
 
-cp -rf languages $RPM_BUILD_ROOT%{_sysconfdir}/%{name}
+#cp -rf languages $RPM_BUILD_ROOT%{_sysconfdir}/%{name}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -70,10 +73,11 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/sarg
-%doc ChangeLog README CONTRIBUTORS
-%dir %{contentdir}
+%doc ChangeLog README CONTRIBUTORS DONATIONS BETA-TESTERS sarg-php
+%attr(751,root,stats) %dir /var/lib/%{name}
 %dir %{_sysconfdir}/%{name}
 %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/%{name}/sarg.conf
 %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/%{name}/exclude_codes
 %{_sysconfdir}/%{name}/languages
+%{_datadir}/%{name}/languages
 %{_mandir}/man?/*
