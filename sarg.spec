@@ -45,7 +45,7 @@ HTML ou por email.
 %patch0 -p1
 
 %build
-aclocal
+%{__aclocal}
 %{__autoconf}
 cp %{_datadir}/automake/config.* .
 %configure \
