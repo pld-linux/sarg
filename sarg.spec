@@ -10,7 +10,7 @@ Version:	2.0.1
 Release:	0.1
 License:	GPL v2
 Group:		Networking
-Source0:	http://dl.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
+Source0:	http://dl.sourceforge.net/sarg/%{name}-%{version}.tar.gz
 # Source0-md5:	a2f025eb47c2569dc1e39f383c989c78
 Patch0:		%{name}-font.patch
 Patch1:		%{name}-config.patch
@@ -18,10 +18,10 @@ Patch2:		%{name}-paths.patch
 URL:		http://sarg.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
-Requires:	X11-fonts
+Requires:	XFree86-fonts
 Requires:	squid
-BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	sqmgrlog
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 Sarg - Squid Analysis Report Generator is a tool that allow you to
