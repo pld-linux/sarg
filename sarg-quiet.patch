@@ -1,0 +1,58 @@
+diff -dur sarg-2.0.1.orig/decomp.c sarg-2.0.1/decomp.c
+--- sarg-2.0.1.orig/decomp.c	2004-10-03 23:37:03.000000000 +0200
++++ sarg-2.0.1/decomp.c	2004-11-04 09:58:26.994384347 +0100
+@@ -34,8 +34,10 @@
+    }
+ 
+    if(strstr(arq,".gz") !=0) {
+-      sprintf(cmd,"%s: %s > %s/sarg-file.in (zcat)",text[62],arq,tmp);
+-      debuga(cmd);
++      if (debug) {
++          sprintf(cmd,"%s: %s > %s/sarg-file.in (zcat)",text[62],arq,tmp);
++          debuga(cmd);
++      }
+       sprintf(cmd,"zcat %s > %s/sarg-file.in",arq,tmp);
+       system(cmd);
+       strcpy(zip,"zcat");
+@@ -44,8 +46,10 @@
+    }
+ 
+    if(strstr(arq,".bz2") != 0) {
+-      sprintf(cmd,"%s: %s > %s/sarg-file.in (bzcat)",text[62],arq,tmp);
+-      debuga(cmd);
++      if (debug) {
++	  sprintf(cmd,"%s: %s > %s/sarg-file.in (bzcat)",text[62],arq,tmp);
++	  debuga(cmd);
++      }
+       sprintf(cmd,"bzcat %s > %s/sarg-file.in",arq,tmp);
+       system(cmd);
+       strcpy(zip,"zcat");
+@@ -54,8 +58,10 @@
+    }
+ 
+    if(strstr(arq,".Z")) {
+-      sprintf(cmd,"%s: %s (uncompress)",text[62],arq);
+-      debuga(cmd);
++      if (debug) {
++	  sprintf(cmd,"%s: %s (uncompress)",text[62],arq);
++	  debuga(cmd);
++      }
+       sprintf(cmd,"uncompress %s",arq);
+       system(cmd);
+       arq[strlen(arq)-2]='\0';
+diff -dur sarg-2.0.1.orig/log.c sarg-2.0.1/log.c
+--- sarg-2.0.1.orig/log.c	2004-10-03 23:37:03.000000000 +0200
++++ sarg-2.0.1/log.c	2004-11-04 09:59:07.549405284 +0100
+@@ -717,8 +717,10 @@
+ 	if(strcmp(ShowReadStatistics,"yes") == 0) {
+            perc=recs2 * 100;
+            perc=perc / recs1;
+-	   printf("SARG: Records in file: %d, reading: %3.2f%%\r",recs1,perc);
+-           fflush (stdout);
++	   if (debug) {
++	       printf("SARG: Records in file: %d, reading: %3.2f%%\r",recs1,perc);
++	       fflush (stdout);
++	   }
+         }
+         if(!bufz[0]) continue;
+         if(strstr(bufz,"HTTP/0.0") != 0) continue;
