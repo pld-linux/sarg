@@ -3,8 +3,8 @@ Summary(es):	generador de informes del squid por utilizador/ip/nombre
 Summary(pl):	Analizator logów Squida
 Summary(pt_BR):	Gerador de relatórios por usuário/ip/nome do squid
 Name:		sarg
-Version:	1.2.1
-Release:	2
+Version:	1.2.2.1
+Release:	1
 License:	GPL v2
 Group:		Networking
 Source0:	http://web.onda.com.br/orso/%{name}-%{version}.tar.gz
@@ -67,15 +67,13 @@ install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/%{name}
 
 cp -rf languages $RPM_BUILD_ROOT/%{_sysconfdir}/%{name}
 
-gzip -9nf README CONTRIBUTORS ChangeLog
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/sarg
-%doc *.gz
+%doc readme CONTIBUTORS ChangeLog
 %dir %{contentdir}
 %dir %{_sysconfdir}/%{name}
 %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/%{name}/sarg.conf
