@@ -1,6 +1,5 @@
-diff -dur sarg-2.0.1.orig/decomp.c sarg-2.0.1/decomp.c
---- sarg-2.0.1.orig/decomp.c	2004-10-03 23:37:03.000000000 +0200
-+++ sarg-2.0.1/decomp.c	2004-11-04 09:58:26.994384347 +0100
+--- sarg-2.0.4-orig/decomp.c	2005-02-21 19:13:21.000000000 +0100
++++ sarg-2.0.4/decomp.c	2005-02-24 20:37:41.000000000 +0100
 @@ -34,8 +34,10 @@
     }
  
@@ -40,19 +39,18 @@ diff -dur sarg-2.0.1.orig/decomp.c sarg-2.0.1/decomp.c
        sprintf(cmd,"uncompress %s",arq);
        system(cmd);
        arq[strlen(arq)-2]='\0';
-diff -dur sarg-2.0.1.orig/log.c sarg-2.0.1/log.c
---- sarg-2.0.1.orig/log.c	2004-10-03 23:37:03.000000000 +0200
-+++ sarg-2.0.1/log.c	2004-11-04 09:59:07.549405284 +0100
-@@ -717,8 +717,10 @@
- 	if(strcmp(ShowReadStatistics,"yes") == 0) {
-            perc=recs2 * 100;
-            perc=perc / recs1;
--	   printf("SARG: Records in file: %d, reading: %3.2f%%\r",recs1,perc);
--           fflush (stdout);
-+	   if (debug) {
-+	       printf("SARG: Records in file: %d, reading: %3.2f%%\r",recs1,perc);
-+	       fflush (stdout);
-+	   }
-         }
-         if(!bufz[0]) continue;
-         if(strstr(bufz,"HTTP/0.0") != 0) continue;
+--- sarg-2.0.4-orig/log.c	2005-02-22 15:06:18.000000000 +0100
++++ sarg-2.0.4/log.c	2005-02-24 20:38:42.000000000 +0100
+@@ -765,8 +765,10 @@
+          recs1++;
+       rewind(fp_in);
+ 
+-      printf("SARG: Records in file: %d, reading: %3.2f%%\r",recs1,(float) 0);
+-      fflush( stdout ) ;
++      if (debug) {
++	printf("SARG: Records in file: %d, reading: %3.2f%%\r",recs1,perc);
++	fflush (stdout);
++      }
+    }
+    
+     

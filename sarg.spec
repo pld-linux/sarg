@@ -4,12 +4,12 @@ Summary(es):	generador de informes del squid por utilizador/ip/nombre
 Summary(pl):	Analizator logów Squida
 Summary(pt_BR):	Gerador de relatórios por usuário/ip/nome do squid
 Name:		sarg
-Version:	2.0.1
-Release:	0.2
+Version:	2.0.4
+Release:	0.1
 License:	GPL v2
 Group:		Networking
 Source0:	http://dl.sourceforge.net/sarg/%{name}-%{version}.tar.gz
-# Source0-md5:	a2f025eb47c2569dc1e39f383c989c78
+# Source0-md5:	68a5ed4ae66ba87054104dd1cc2a5609
 Source1:	%{name}.crontab
 Patch0:		%{name}-font.patch
 Patch1:		%{name}-config.patch

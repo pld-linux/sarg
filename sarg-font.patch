@@ -1,12 +1,11 @@
-diff -dur sarg-2.0.1.org/grepday.c sarg-2.0.1/grepday.c
---- sarg-2.0.1.org/grepday.c	2004-10-03 23:37:03.000000000 +0200
-+++ sarg-2.0.1/grepday.c	2004-10-29 21:14:16.962246365 +0200
-@@ -235,7 +235,7 @@
-       return;
-    }
+--- sarg-2.0.4-orig/grepday.c	2005-02-24 13:35:33.000000000 +0100
++++ sarg-2.0.4/grepday.c	2005-02-24 20:27:35.000000000 +0100
+@@ -33,7 +33,7 @@
+ int silver;
+ int black;
+ int x1;
+-char *font1 = SYSCONFDIR"/fonts/Verdana.TTF";
++char *font1 = "/usr/share/fonts/TTF/luxisr.ttf";
+ char s[15];
  
--   sprintf(font1,"%s/fonts/Verdana.TTF",SYSCONFDIR);
-+   strcpy(font1,"/usr/share/fonts/TTF/luxisr.ttf");
- 
-    im = gdImageCreate(720, 480);
- 
+ void *bar(long long int *n)

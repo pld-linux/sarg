@@ -10,15 +10,14 @@ diff -dur sarg-2.0.1.orig/language.c sarg-2.0.1/language.c
  
     if((fp_text=fopen(warea,"r"))==NULL) {
       fprintf(stderr, "SARG: (language) Cannot open language file: %s\n",warea);
-diff -dur sarg-2.0.1.orig/util.c sarg-2.0.1/util.c
---- sarg-2.0.1.orig/util.c	2004-10-03 23:37:03.000000000 +0200
-+++ sarg-2.0.1/util.c	2004-11-02 15:24:52.599711855 +0100
-@@ -545,7 +545,7 @@
-    sprintf(wdir,"date >%s/%s",dirname2,"date");
+--- sarg-2.0.4-orig/util.c	2005-02-21 19:13:21.000000000 +0100
++++ sarg-2.0.4/util.c	2005-02-24 20:30:50.000000000 +0100
+@@ -678,7 +678,7 @@
+    sprintf(wdir,"date >%s/%s",dirname,"date");
     system(wdir);
  
 -   sprintf(per2,"%s/images",SYSCONFDIR);
 +   sprintf(per2,"%s/images","/usr/share/sarg");
+ 
     dirp = opendir(per2);
-    while ((direntp = readdir( dirp )) != NULL ){
-       if(strncmp(direntp->d_name,".",1) == 0)
+    if(dirp==NULL) {
