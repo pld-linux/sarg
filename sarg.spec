@@ -1,20 +1,20 @@
 #
-# TODO:
-#  - change temporary_dir in the default configuration
 Summary:	Squid log analyzer
 Summary(es):	generador de informes del squid por utilizador/ip/nombre
 Summary(pl):	Analizator logów Squida
 Summary(pt_BR):	Gerador de relatórios por usuário/ip/nome do squid
 Name:		sarg
 Version:	2.0.1
-Release:	0.1
+Release:	0.2
 License:	GPL v2
 Group:		Networking
 Source0:	http://dl.sourceforge.net/sarg/%{name}-%{version}.tar.gz
 # Source0-md5:	a2f025eb47c2569dc1e39f383c989c78
+Source1:	%{name}.crontab
 Patch0:		%{name}-font.patch
 Patch1:		%{name}-config.patch
 Patch2:		%{name}-paths.patch
+Patch3:		%{name}-quiet.patch
 URL:		http://sarg.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -49,6 +49,7 @@ HTML ou por email.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 %build
 %{__aclocal}
@@ -61,8 +62,8 @@ cp -f %{_datadir}/automake/config.* cfgaux
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_bindir},%{_sysconfdir}/%{name}}
-install -d $RPM_BUILD_ROOT{/var/lib/%{name}/images,%{_datadir}/%{name},%{_mandir}/man1}
+install -d $RPM_BUILD_ROOT{%{_bindir},%{_sysconfdir}/%{name},/etc/cron.d}
+install -d $RPM_BUILD_ROOT{/var/lib/%{name}/{images,tmp},%{_datadir}/%{name},%{_mandir}/man1}
 
 %{__make} install \
 	BINDIR=$RPM_BUILD_ROOT%{_bindir} \
@@ -70,6 +71,7 @@ install -d $RPM_BUILD_ROOT{/var/lib/%{name}/images,%{_datadir}/%{name},%{_mandir
 	MANDIR=$RPM_BUILD_ROOT%{_mandir}/man1/
 
 install sarg.conf $RPM_BUILD_ROOT%{_sysconfdir}/%{name}/sarg.conf
+install %{SOURCE1} $RPM_BUILD_ROOT/etc/cron.d/%{name}
 mv $RPM_BUILD_ROOT{%{_sysconfdir}/%{name}/images,%{_datadir}/%{name}}
 mv $RPM_BUILD_ROOT{%{_sysconfdir}/%{name}/languages,%{_datadir}/%{name}}
 rm -r $RPM_BUILD_ROOT{/etc/sarg/sarg-php,/etc/sarg/fonts}
@@ -84,8 +86,10 @@ rm -rf $RPM_BUILD_ROOT
 %doc ChangeLog README CONTRIBUTORS DONATIONS BETA-TESTERS sarg-php
 %attr(771,root,stats) %dir /var/lib/%{name}
 %attr(771,root,stats) %dir /var/lib/%{name}/images
+%attr(770,root,stats) %dir /var/lib/%{name}/tmp
 %dir %{_sysconfdir}/%{name}
 %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/%{name}/sarg.conf
 %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/%{name}/exclude_codes
+%config(noreplace) %verify(not size mtime md5) /etc/cron.d/%{name}
 %{_datadir}/%{name}
 %{_mandir}/man?/*
