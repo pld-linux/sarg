@@ -4,11 +4,12 @@ Summary(pl):	Analizator logów Squida
 Summary(pt_BR):	Gerador de relatórios por usuário/ip/nome do squid
 Name:		sarg
 Version:	1.2.1
-Release:	1
+Release:	2
 License:	GPL v2
 Group:		Networking
 Source0:	http://web.onda.com.br/orso/%{name}-%{version}.tar.gz
 Source1:	%{name}.conf
+Patch0:		%{name}-iso2.patch
 URL:		http://web.onda.com.br/orso/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -41,6 +42,7 @@ HTML ou por email.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 aclocal
