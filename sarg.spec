@@ -64,9 +64,9 @@ install -d $RPM_BUILD_ROOT{%{_bindir},%{_sysconfdir}/%{name},%{contentdir}}
 
 install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/%{name}
 
-#install  sarg.conf $RPM_BUILD_ROOT%{_sysconfdir}/%{name}/sarg.conf
+#install sarg.conf $RPM_BUILD_ROOT%{_sysconfdir}/%{name}/sarg.conf
 
-cp -rf languages $RPM_BUILD_ROOT/%{_sysconfdir}/%{name}
+cp -rf languages $RPM_BUILD_ROOT%{_sysconfdir}/%{name}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
