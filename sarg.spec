@@ -8,6 +8,7 @@ Release:	1
 License:	GPLv2
 Group:		Networking
 Source0:	http://web.onda.com.br/orso/%{name}-%{version}.tar.gz
+Source1:	%{name}.conf
 URL:		http://web.onda.com.br/orso/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -58,7 +59,9 @@ install -d $RPM_BUILD_ROOT{%{_bindir},%{_sysconfdir}/%{name},%{contentdir}}
 	BINDIR=$RPM_BUILD_ROOT%{_bindir} \
 	SYSCONFDIR=$RPM_BUILD_ROOT%{_sysconfdir}/%{name}
 
-install  sarg.conf $RPM_BUILD_ROOT%{_sysconfdir}/%{name}/sarg.conf
+install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/%{name}
+
+#install  sarg.conf $RPM_BUILD_ROOT%{_sysconfdir}/%{name}/sarg.conf
 
 cp -rf languages $RPM_BUILD_ROOT/%{_sysconfdir}/%{name}
 
