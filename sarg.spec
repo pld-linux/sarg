@@ -17,7 +17,7 @@ Requires:	squid
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	sqmgrlog
 
-%define		contentdir	/home/httpd/html/squid-reports
+%define		contentdir	/home/services/httpd/html/squid-reports
 
 %description
 Sarg - Squid Analysis Report Generator is a tool that allow you to
