@@ -1,0 +1,12 @@
+diff -dur sarg-2.0.1.org/grepday.c sarg-2.0.1/grepday.c
+--- sarg-2.0.1.org/grepday.c	2004-10-03 23:37:03.000000000 +0200
++++ sarg-2.0.1/grepday.c	2004-10-29 21:14:16.962246365 +0200
+@@ -235,7 +235,7 @@
+       return;
+    }
+ 
+-   sprintf(font1,"%s/fonts/Verdana.TTF",SYSCONFDIR);
++   strcpy(font1,"/usr/share/fonts/TTF/luxisr.ttf");
+ 
+    im = gdImageCreate(720, 480);
+ 
