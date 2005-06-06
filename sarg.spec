@@ -18,7 +18,7 @@ Patch3:		%{name}-quiet.patch
 URL:		http://sarg.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
-Requires:	XFree86-fonts
+Requires:	X11-fonts
 Requires:	squid
 Obsoletes:	sqmgrlog
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
