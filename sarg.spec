@@ -88,8 +88,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(771,root,stats) %dir /var/lib/%{name}/images
 %attr(770,root,stats) %dir /var/lib/%{name}/tmp
 %dir %{_sysconfdir}/%{name}
-%config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/%{name}/sarg.conf
-%config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/%{name}/exclude_codes
-%config(noreplace) %verify(not size mtime md5) /etc/cron.d/%{name}
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/%{name}/sarg.conf
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/%{name}/exclude_codes
+%config(noreplace) %verify(not md5 mtime size) /etc/cron.d/%{name}
 %{_datadir}/%{name}
 %{_mandir}/man?/*
