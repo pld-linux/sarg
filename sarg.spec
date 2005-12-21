@@ -54,7 +54,7 @@ HTML ou por email.
 %build
 %{__aclocal}
 %{__autoconf}
-cp -f %{_datadir}/automake/config.* cfgaux
+cp -f /usr/share/automake/config.* cfgaux
 %configure \
 	 --enable-sysconfdir=%{_sysconfdir}/%{name}
 
