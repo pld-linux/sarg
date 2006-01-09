@@ -1,6 +1,5 @@
-diff -dur sarg-2.0.1.orig/sarg.1 sarg-2.0.1/sarg.1
---- sarg-2.0.1.orig/sarg.1	2004-10-03 23:37:03.000000000 +0200
-+++ sarg-2.0.1/sarg.1	2004-11-04 10:07:46.453506303 +0100
+--- sarg-2.1.orig/sarg.1	2006-01-04 22:47:25.000000000 +0100
++++ sarg-2.1/sarg.1	2006-01-04 23:00:14.000000000 +0100
 @@ -131,11 +131,11 @@
  .B \-split
  Split the log file by date in \fB-d\fP parameter.
@@ -16,20 +15,20 @@ diff -dur sarg-2.0.1.orig/sarg.1 sarg-2.0.1/sarg.1
  .SH SEE ALSO
  squid(8)
  .SH AUTHOR
-diff -dur sarg-2.0.1.orig/sarg.conf sarg-2.0.1/sarg.conf
---- sarg-2.0.1.orig/sarg.conf	2004-10-03 23:37:03.000000000 +0200
-+++ sarg-2.0.1/sarg.conf	2004-11-04 10:09:24.966485822 +0100
-@@ -29,7 +29,8 @@
+--- sarg-2.1.orig/sarg.conf	2006-01-04 22:47:25.000000000 +0100
++++ sarg-2.1/sarg.conf	2006-01-04 23:04:50.000000000 +0100
+@@ -32,8 +32,8 @@
  #       Where is the access.log file
  #       sarg -l file
  #
 -#access_log /usr/local/squid/var/logs/access.log
+-
 +# Default PLD configuration: make report from the recently rotated log
-+access_log /var/log/archiv/squid/access.log.1.gz
- 
++access_log /var/log/squid/access.log
  # TAG: graphs yes|no
  #	Use graphics where is possible.
-@@ -130,13 +131,13 @@
+ #           graph_days_bytes_bar_color blue|green|yellow|orange|brown|red
+@@ -133,13 +133,13 @@
  #       Temporary directory name for work files
  #       sarg -w dir
  #
@@ -45,7 +44,7 @@ diff -dur sarg-2.0.1.orig/sarg.conf sarg-2.0.1/sarg.conf
  
  # TAG:  output_email
  #       Email address to send the reports. If you use this tag, no html reports will be generated.
-@@ -260,7 +261,7 @@
+@@ -269,7 +269,7 @@
  # TAG: exclude_codes file
  #      Ignore records with these codes. Eg.: NONE/400
  #
@@ -54,25 +53,25 @@ diff -dur sarg-2.0.1.orig/sarg.conf sarg-2.0.1/sarg.conf
  
  # TAG: replace_index string
  #      Replace "index.html" in the main index file with this string
-@@ -427,7 +428,7 @@
- #      path to squidGuard.conf file
+@@ -456,7 +456,7 @@
  #      Generate reports from SquidGuard logs.
  #      Use 'none' to disable.
+ #      You can use sarg -L filename to use an alternate squidGuard log.
 -#      squidguard_conf /usr/local/squidGuard/squidGuard.conf
 +#      squidguard_conf /var/log/squidGuard/squidGuard.conf
  #
  #squidguard_conf none
  
-@@ -481,7 +482,7 @@
+@@ -526,7 +526,7 @@
  #     Sarg will create sarg-php directory with some PHP modules:
  #     - sarg-squidguard-block.php - add urls from user reports to squidGuard DB
  #
 -#www_document_root /var/www/html
 +www_document_root /var/lib/sarg
  
- # TAG block_it module_url
+ # TAG: block_it module_url
  #     This tag allow you to pass urls from user reports to a cgi or php module,
-@@ -524,7 +525,7 @@
+@@ -569,7 +569,7 @@
  #                                          %u - user report
  #
  # user_authentication no

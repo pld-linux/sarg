@@ -1,11 +1,11 @@
---- sarg-2.0.4-orig/grepday.c	2005-02-24 13:35:33.000000000 +0100
-+++ sarg-2.0.4/grepday.c	2005-02-24 20:27:35.000000000 +0100
-@@ -33,7 +33,7 @@
+--- sarg-2.1.orig/grepday.c	2006-01-04 22:47:25.000000000 +0100
++++ sarg-2.1/grepday.c	2006-01-09 21:59:28.000000000 +0100
+@@ -36,7 +36,7 @@
  int silver;
  int black;
  int x1;
--char *font1 = SYSCONFDIR"/fonts/Verdana.TTF";
+-char *font1 = SYSCONFDIR"/fonts/FreeSans.ttf";
 +char *font1 = "/usr/share/fonts/TTF/luxisr.ttf";
  char s[15];
  
- void *bar(long long int *n)
+ #ifdef HAVE_ICONV_H
