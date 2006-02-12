@@ -18,6 +18,7 @@ Patch4:		%{name}-log.c.patch
 URL:		http://sarg.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
+BuildRequires:	gd-devel
 Requires:	XFree86-fonts
 Requires:	squid
 Obsoletes:	sqmgrlog
