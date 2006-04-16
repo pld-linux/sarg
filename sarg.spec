@@ -15,7 +15,7 @@ Patch1:		%{name}-config.patch
 Patch2:		%{name}-paths.patch
 Patch3:		%{name}-quiet.patch
 Patch4:		%{name}-log.c.patch
-URL:		http://sarg.sourceforge.net/
+URL:		http://sarg.sourceforge.net/sarg.php
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	gd-devel
