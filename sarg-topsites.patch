@@ -1,0 +1,33 @@
+--- sarg-2.2.orig/topsites.c	2006-08-30 11:09:51.000000000 -0300
++++ sarg-2.2/topsites.c	2006-08-30 10:38:31.000000000 -0300
+@@ -213,7 +213,7 @@
+ 
+       sprintf(wwork1,"%s",fixnum(twork1,1));
+       sprintf(wwork2,"%s",fixnum(twork2,1));
+-      sprintf(wwork3,"%s",fixnum(twork3,1));
++      sprintf(wwork3,"%s",fixtime(twork3,1));
+ 
+       if(strlen(BlockIt) > 0)
+          sprintf(BlockImage,"<a href=\"%s%s?url=%s\"><img src=\"../images/sarg-squidguard-block.png\" border=\"0\"></a>&nbsp;",wwwDocumentRoot,BlockIt,url);
+--- sarg-2.2.orig/log.c	2006-08-30 11:04:56.000000000 -0300
++++ sarg-2.2/log.c	2006-08-30 11:04:45.000000000 -0300
+@@ -182,7 +182,7 @@
+    strcpy(LongUrl,"no");
+    strcpy(language,"English");
+    strcpy(FontFace,"Verdana,Tahoma,Arial");
+-   strcpy(datetimeby,"bytes");
++   strcpy(datetimeby,"elap");
+    strcpy(CharSet,"ISO-8859-1");
+    strcpy(Privacy,"no");
+    strcpy(PrivacyString,"***.***.***.***");
+--- sarg-2.2.orig/sarg.conf	2006-08-30 11:04:40.000000000 -0300
++++ sarg-2.2/sarg.conf	2006-08-30 11:04:14.000000000 -0300
+@@ -325,7 +325,7 @@
+ # TAG: date_time_by bytes|elap
+ #      Date/Time reports will use bytes or elapsed time?
+ #
+-#date_time_by bytes
++#date_time_by elap
+ 
+ # TAG: charset name
+ #      ISO 8859 is a full series of 10 standardized multilingual single-byte coded (8bit)
