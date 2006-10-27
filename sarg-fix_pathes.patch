@@ -1,0 +1,12 @@
+--- sarg-2.2.orig/user_limit_block~	2006-05-17 15:06:20.000000000 +0200
++++ sarg-2.2/user_limit_block	2006-10-27 19:58:36.000000000 +0200
+@@ -1,7 +1,7 @@
+ #!/bin/sh
+ 
+-conf="/usr/local/sarg/sarg.conf"
+-squid_password_file="/usr/local/squid/etc/passwd"
++conf="/etc/sarg/sarg.conf"
++squid_password_file="/etc/squid/passwd"
+ tmp="/tmp/sarg_limit.$$"
+ 
+ limit_file=`grep "per_user_limit" $conf|grep -v "#"|awk '{print $2}'`
