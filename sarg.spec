@@ -1,20 +1,23 @@
+# TODO:
+#	- review user_limit_block script
 Summary:	Squid log analyzer
 Summary(es):	generador de informes del squid por utilizador/ip/nombre
 Summary(pl):	Analizator logów Squida
 Summary(pt_BR):	Gerador de relatórios por usuário/ip/nome do squid
 Name:		sarg
-Version:	2.1
+Version:	2.2
 Release:	1
 License:	GPL v2
 Group:		Networking
 Source0:	http://dl.sourceforge.net/sarg/%{name}-%{version}.tar.gz
-# Source0-md5:	15b1c3fbff47ac6ea77573cae75b5e63
+# Source0-md5:	ec1ae7a0b666831caa8ace596b01174a
 Source1:	%{name}.crontab
 Patch0:		%{name}-font.patch
 Patch1:		%{name}-config.patch
 Patch2:		%{name}-paths.patch
 Patch3:		%{name}-quiet.patch
-Patch4:		%{name}-log.c.patch
+Patch4:		%{name}-topsites.patch
+Patch5:		%{name}-fix_pathes.patch
 URL:		http://sarg.sourceforge.net/sarg.php
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -52,6 +55,8 @@ HTML ou por email.
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
+%patch5 -p1
+
 %build
 %{__aclocal}
 %{__autoconf}
@@ -73,6 +78,8 @@ install -d $RPM_BUILD_ROOT{/var/lib/%{name}/{images,tmp},%{_datadir}/%{name},%{_
 
 install sarg.conf $RPM_BUILD_ROOT%{_sysconfdir}/%{name}/sarg.conf
 install %{SOURCE1} $RPM_BUILD_ROOT/etc/cron.d/%{name}
+install user_limit_block $RPM_BUILD_ROOT%{_sysconfdir}/%{name}
+
 mv $RPM_BUILD_ROOT{%{_sysconfdir}/%{name}/images,%{_datadir}/%{name}}
 mv $RPM_BUILD_ROOT{%{_sysconfdir}/%{name}/languages,%{_datadir}/%{name}}
 rm -r $RPM_BUILD_ROOT{/etc/sarg/sarg-php,/etc/sarg/fonts}
@@ -89,6 +96,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(771,root,stats) %dir /var/lib/%{name}/images
 %attr(770,root,stats) %dir /var/lib/%{name}/tmp
 %dir %{_sysconfdir}/%{name}
+%attr(755,root,root) %{_sysconfdir}/%{name}/user_limit_block
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/%{name}/sarg.conf
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/%{name}/exclude_codes
 %config(noreplace) %verify(not md5 mtime size) /etc/cron.d/%{name}
