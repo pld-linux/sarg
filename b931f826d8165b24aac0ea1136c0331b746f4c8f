@@ -1,0 +1,5 @@
+- Release: 0.2
+- disabled messages written to stdout when sarg is run without any debug flags
+- /var/lib/%{name}/tmp as the default temporary dir (/tmp usage may be insecure)
+- crontab entry provided
+  sarg should be usable now
