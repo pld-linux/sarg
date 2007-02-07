@@ -1,5 +1,3 @@
-# TODO:
-#	- review user_limit_block script
 Summary:	Squid log analyzer
 Summary(es):	generador de informes del squid por utilizador/ip/nombre
 Summary(pl):	Analizator logów Squida
@@ -12,6 +10,7 @@ Group:		Networking
 Source0:	http://dl.sourceforge.net/sarg/%{name}-%{version}.tar.gz
 # Source0-md5:	ec1ae7a0b666831caa8ace596b01174a
 Source1:	%{name}.crontab
+Source2:	%{name}-user_limit_block
 Patch0:		%{name}-font.patch
 Patch1:		%{name}-config.patch
 Patch2:		%{name}-paths.patch
@@ -78,12 +77,12 @@ install -d $RPM_BUILD_ROOT{/var/lib/%{name}/{images,tmp},%{_datadir}/%{name},%{_
 
 install sarg.conf $RPM_BUILD_ROOT%{_sysconfdir}/%{name}/sarg.conf
 install %{SOURCE1} $RPM_BUILD_ROOT/etc/cron.d/%{name}
-install user_limit_block $RPM_BUILD_ROOT%{_sysconfdir}/%{name}
+install %{SOURCE2} $RPM_BUILD_ROOT%{_sysconfdir}/%{name}
 
 mv $RPM_BUILD_ROOT{%{_sysconfdir}/%{name}/images,%{_datadir}/%{name}}
 mv $RPM_BUILD_ROOT{%{_sysconfdir}/%{name}/languages,%{_datadir}/%{name}}
-rm -r $RPM_BUILD_ROOT{/etc/sarg/sarg-php,/etc/sarg/fonts}
-rm $RPM_BUILD_ROOT/etc/sarg/css.tpl
+rm -r $RPM_BUILD_ROOT{%{_sysconfdir}/sarg/sarg-php,%{_sysconfdir}/sarg/fonts}
+rm $RPM_BUILD_ROOT%{_sysconfdir}/sarg/css.tpl
 
 %clean
 rm -rf $RPM_BUILD_ROOT
