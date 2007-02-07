@@ -2,17 +2,18 @@
 
 conf="/etc/sarg/sarg.conf"
 squid_password_file="/etc/squid/passwd"
-tmp="/tmp/sarg_limit.$$"
 
 limit_file=`grep "per_user_limit" $conf|grep -v "#"|awk '{print $2}'`
+limit_file=$(awk '/^per_user_limit/{ print $2 }' $conf)
 
-if [ "$limit_file" != "" ]; then
-   rm -rf $tmp
-   cat $limit_file|while read key; do
-      uline=`grep $key $squid_password_file`
-      grep -v $key $squid_password_file > $tmp
-      echo $uline|sed 's/:/:*/g' >> $tmp
-      cat $tmp > $squid_password_file
-      rm -rf $tmp
-   done
+if [ "$limit_file" ]; then
+	tmp=$(mktemp)
+	while read key; do
+		uline=$(grep $key $squid_password_file)
+		grep -v $key $squid_password_file > $tmp
+		echo $uline | sed 's/:/:*/g' >> $tmp
+		cat $tmp > $squid_password_file
+		rm -f
+	done < $limit_file
+	rm -f $tmp
 fi
