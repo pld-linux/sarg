@@ -1,0 +1,3 @@
+- FHS updates
+- use font from X11-fonts instead of Verdana included in sarg sources (%{name}-font.patch)
+  (nfy)
