@@ -4,4 +4,4 @@ MAILTO=root
 NICE=15
 
 # Run sarg after logrotate
-03 1 * * *      stats    /usr/bin/sarg > /dev/null
+13 5 * * *      stats    /usr/bin/sarg > /dev/null
