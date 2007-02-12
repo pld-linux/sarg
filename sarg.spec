@@ -1,7 +1,7 @@
 Summary:	Squid log analyzer
-Summary(es):	generador de informes del squid por utilizador/ip/nombre
-Summary(pl):	Analizator logów Squida
-Summary(pt_BR):	Gerador de relatórios por usuário/ip/nome do squid
+Summary(es.UTF-8):   generador de informes del squid por utilizador/ip/nombre
+Summary(pl.UTF-8):   Analizator logÃ³w Squida
+Summary(pt_BR.UTF-8):   Gerador de relatÃ³rios por usuÃ¡rio/ip/nome do squid
 Name:		sarg
 Version:	2.2
 Release:	1
@@ -32,19 +32,19 @@ view "where" your users are going to on the Internet. Sarg generate
 reports in html, with many fields, like: users, IP Addresses, bytes,
 sites and times.
 
-%description -l es
+%description -l es.UTF-8
 Sarg (era Sqmgrlog) genera informes por utilizador/ip/nombre hacia el
-fichero de log del SQUID. Los informes serán generados en HTML o
+fichero de log del SQUID. Los informes serÃ¡n generados en HTML o
 correo.
 
-%description -l pl
-Sarg jest narzêdziem dziêki któremu mo¿esz sprawdzaæ jakie adresy w
-Internecie odwiedzaj± twoi u¿ytkownicy. Sarg generuje raporty w
+%description -l pl.UTF-8
+Sarg jest narzÄ™dziem dziÄ™ki ktÃ³remu moÅ¼esz sprawdzaÄ‡ jakie adresy w
+Internecie odwiedzajÄ… twoi uÅ¼ytkownicy. Sarg generuje raporty w
 HTML-u.
 
-%description -l pt_BR
-O Sarg (antigo Sqmgrlog) gera relatórios por usuário/ip/nome
-baseando-se no arquivo de log do SQUID. Os relatórios são gerados em
+%description -l pt_BR.UTF-8
+O Sarg (antigo Sqmgrlog) gera relatÃ³rios por usuÃ¡rio/ip/nome
+baseando-se no arquivo de log do SQUID. Os relatÃ³rios sÃ£o gerados em
 HTML ou por email.
 
 %prep
