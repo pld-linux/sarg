@@ -1,7 +1,7 @@
 Summary:	Squid log analyzer
-Summary(es.UTF-8):   generador de informes del squid por utilizador/ip/nombre
-Summary(pl.UTF-8):   Analizator logów Squida
-Summary(pt_BR.UTF-8):   Gerador de relatórios por usuário/ip/nome do squid
+Summary(es.UTF-8):	generador de informes del squid por utilizador/ip/nombre
+Summary(pl.UTF-8):	Analizator logów Squida
+Summary(pt_BR.UTF-8):	Gerador de relatórios por usuário/ip/nome do squid
 Name:		sarg
 Version:	2.2
 Release:	1
