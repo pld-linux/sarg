@@ -20,8 +20,8 @@ URL:		http://sarg.sourceforge.net/sarg.php
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	gd-devel
-Requires:	xorg-font-font-bh-ttf
 Requires:	squid
+Requires:	xorg-font-font-bh-ttf
 Obsoletes:	sqmgrlog
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
