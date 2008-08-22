@@ -1,11 +1,11 @@
 --- sarg-2.1.orig/grepday.c	2006-01-04 22:47:25.000000000 +0100
 +++ sarg-2.1/grepday.c	2006-01-09 21:59:28.000000000 +0100
-@@ -36,7 +36,7 @@
- int silver;
+@@ -37,7 +37,7 @@
  int black;
  int x1;
--char *font1 = SYSCONFDIR"/fonts/FreeSans.ttf";
+ //char *font1 = SYSCONFDIR"/fonts/FreeSans.ttf";
+-char *font1 = SYSCONFDIR"/fonts/DejaVuSans.ttf";
 +char *font1 = "/usr/share/fonts/TTF/luxisr.ttf";
  char s[15];
  
- #ifdef HAVE_ICONV_H
+ #if defined(HAVE_GD) && defined(HAVE_ICONV_H) && defined(gdFTEX_Unicode)

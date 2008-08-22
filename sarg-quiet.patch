@@ -41,16 +41,14 @@
        arq[strlen(arq)-2]='\0';
 --- sarg-2.0.4-orig/log.c	2005-02-22 15:06:18.000000000 +0100
 +++ sarg-2.0.4/log.c	2005-02-24 20:38:42.000000000 +0100
-@@ -765,8 +765,10 @@
-          recs1++;
-       rewind(fp_in);
+@@ -778,8 +778,10 @@
  
--      printf("SARG: Records in file: %d, reading: %3.2f%%\r",recs1,(float) 0);
--      fflush( stdout ) ;
+       while( fgets(bufz,sizeof(bufz),fp_in) != NULL ) recs1++;
+       rewind(fp_in);
 +      if (debug) {
-+	printf("SARG: Records in file: %d, reading: %3.2f%%\r",recs1,perc);
-+	fflush (stdout);
+       printf("SARG: Records in file: " OFFSET_STRING ", reading: %3.2f%%\r",recs1,(float) 0);
+       fflush( stdout ) ;
 +      }
     }
     
-     
+    while(fgets(bufz,sizeof(bufz),fp_in)!=NULL) {

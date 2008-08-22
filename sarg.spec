@@ -3,25 +3,24 @@ Summary(es.UTF-8):	generador de informes del squid por utilizador/ip/nombre
 Summary(pl.UTF-8):	Analizator logów Squida
 Summary(pt_BR.UTF-8):	Gerador de relatórios por usuário/ip/nome do squid
 Name:		sarg
-Version:	2.2
+Version:	2.2.5
 Release:	1
 License:	GPL v2
 Group:		Networking
 Source0:	http://dl.sourceforge.net/sarg/%{name}-%{version}.tar.gz
-# Source0-md5:	ec1ae7a0b666831caa8ace596b01174a
+# Source0-md5:	0f4481e375dedf9ab8c682c9407162ff
 Source1:	%{name}.crontab
 Source2:	%{name}-user_limit_block
 Patch0:		%{name}-font.patch
 Patch1:		%{name}-config.patch
 Patch2:		%{name}-paths.patch
 Patch3:		%{name}-quiet.patch
-Patch4:		%{name}-topsites.patch
-Patch5:		%{name}-fix_pathes.patch
+Patch4:		%{name}-fix_pathes.patch
 URL:		http://sarg.sourceforge.net/sarg.php
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	gd-devel
-Requires:	XFree86-fonts
+Requires:	xorg-font-font-bh-ttf
 Requires:	squid
 Obsoletes:	sqmgrlog
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -54,7 +53,6 @@ HTML ou por email.
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
-%patch5 -p1
 
 %build
 %{__aclocal}
